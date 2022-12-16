@@ -11,3 +11,11 @@ export function exportarObjetoParaArquivoJson(conteudoJson: any, caminhoArquivo:
     const conteudoTratado = JSON.stringify(conteudoJson);
     sistemaArquivos.writeFileSync(caminhoArquivo, conteudoTratado);
 }
+
+export function textoParaJson(texto: string) {
+    return JSON.parse(texto);
+}
+
+export function objetoParaTextoJson(objeto: any) {
+    return JSON.stringify(objeto);
+}
