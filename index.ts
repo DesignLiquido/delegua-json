@@ -1,5 +1,5 @@
-import * as sistemaArquivos from "node:fs"
-import * as caminho from "node:path"
+import * as sistemaArquivos from "fs"
+import * as caminho from "path"
 
 export function importarArquivoJson(caminhoArquivo: string): any {
     const caminhoResolvido = caminho.resolve(caminhoArquivo);
