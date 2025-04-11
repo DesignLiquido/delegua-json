@@ -1,21 +1,46 @@
 import * as sistemaArquivos from "fs"
 import * as caminho from "path"
 
-export function importarArquivoJson(caminhoArquivo: string): any {
+/**
+ * Importa um arquivo como JSON.
+ * @param {any} _ O visitante da instrução, normalmente um interpretador.
+ * @param {string} caminhoArquivo O caminho absoluto do arquivo.
+ * @returns O resultado da avaliação do arquivo em JSON.
+ */
+export function importarArquivoJson(_: any, caminhoArquivo: string): any {
     const caminhoResolvido = caminho.resolve(caminhoArquivo);
     const dadosDoArquivo: Buffer = sistemaArquivos.readFileSync(caminhoResolvido);
     return JSON.parse(dadosDoArquivo.toString());
 }
 
-export function exportarObjetoParaArquivoJson(conteudoJson: any, caminhoArquivo: string) {
+/**
+ * Exporta um objeto, normalmente um dicionário Delégua, para um arquivo JSON.
+ * @param {any} _ O visitante da instrução, normalmente um interpretador.
+ * @param {any} conteudoJson O dicionário em Delégua a ser transformado em JSON.
+ * @param {string} caminhoArquivo O caminho absoluto do arquivo JSON.
+ */
+export function exportarObjetoParaArquivoJson(_: any, conteudoJson: any, caminhoArquivo: string) {
     const conteudoTratado = JSON.stringify(conteudoJson);
     sistemaArquivos.writeFileSync(caminhoArquivo, conteudoTratado);
 }
 
-export function textoParaJson(texto: string) {
+/**
+ * Converte um texto serializável JSON em um objeto JSON.
+ * @param {any} _ O visitante da instrução, normalmente um interpretador.
+ * @param {string} texto O texto, normalmente uma representação de JSON.
+ * @returns O resultado como um objeto do JavaScript.
+ */
+export function textoParaJson(_: any, texto: string) {
     return JSON.parse(texto);
 }
 
-export function objetoParaTextoJson(objeto: any) {
+/**
+ * Converte um objeto do JavaScript, normalmente um dicionário Delégua, para 
+ * texto representando JSON.
+ * @param {any} _ O visitante da instrução, normalmente um interpretador.
+ * @param {any} objeto Um objeto JavaScript.
+ * @returns {string} A representação do objeto em JSON.
+ */
+export function objetoParaTextoJson(_: any, objeto: any) {
     return JSON.stringify(objeto);
 }
