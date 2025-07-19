@@ -30,7 +30,7 @@ export function exportarObjetoParaArquivoJson(_: any, conteudoJson: any, caminho
  * @param {string} texto O texto, normalmente uma representação de JSON.
  * @returns O resultado como um objeto do JavaScript.
  */
-export function textoParaJson(_: any, texto: string) {
+export function textoParaJson(_: any, texto: string): any {
     return JSON.parse(texto);
 }
 
@@ -41,6 +41,6 @@ export function textoParaJson(_: any, texto: string) {
  * @param {any} objeto Um objeto JavaScript.
  * @returns {string} A representação do objeto em JSON.
  */
-export function objetoParaTextoJson(_: any, objeto: any) {
+export function objetoParaTextoJson(_: any, objeto: any): string {
     return JSON.stringify(objeto);
 }
