@@ -1,14 +1,15 @@
-import * as sistemaArquivos from "fs"
-import * as caminho from "path"
+import * as sistemaArquivos from "fs";
+import * as caminho from "path";
 
 /**
  * Importa um arquivo como JSON.
- * @param {any} _ O visitante da instrução, normalmente um interpretador.
+ * @param {{diretorioBase: string}} interpretador O visitante da instrução, normalmente um interpretador.
+ *                                  Aqui apenas usamos uma informação que é o diretório base.
  * @param {string} caminhoArquivo O caminho absoluto do arquivo.
  * @returns O resultado da avaliação do arquivo em JSON.
  */
-export function importarArquivoJson(_: any, caminhoArquivo: string): any {
-    const caminhoResolvido = caminho.resolve(caminhoArquivo);
+export function importarArquivoJson(interpretador: {diretorioBase: string}, caminhoArquivo: string): any {
+    const caminhoResolvido = caminho.resolve(interpretador.diretorioBase, caminhoArquivo);
     const dadosDoArquivo: Buffer = sistemaArquivos.readFileSync(caminhoResolvido);
     return JSON.parse(dadosDoArquivo.toString());
 }
