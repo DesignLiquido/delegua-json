@@ -2,9 +2,13 @@
     "name": "@designliquido/delegua-json",
     "description": "Biblioteca para Delégua e JavaScript para manipulação de JSON.",
     "version": "0.2.1",
+    "main": "dist/index.js",
+    "browser": "dist/web.js",
+    "types": "dist/index.d.ts",
     "author": "Leonel Sanches da Silva",
     "scripts": {
         "empacotar": "yarn rimraf ./dist && tsc && yarn copyfiles -V ./package.json ./dist && yarn copyfiles -V ./README.md ./dist",
+        "publicar-npm": "npm publish ./dist --access public",
         "testes-unitarios": "yarn jest --coverage"
     },
     "devDependencies": {

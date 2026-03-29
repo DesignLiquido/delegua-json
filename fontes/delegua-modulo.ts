@@ -1,4 +1,6 @@
-import { exportarObjetoParaArquivoJson, importarArquivoJson, objetoParaTextoJson, textoParaJson } from ".";
+import { exportarObjetoParaArquivoJson, importarArquivoJson } from "./node";
+import { objetoParaTextoJson, textoParaJson } from "./web";
+
 
 export const DeleguaModuloJson = {
     importarArquivoJson: {
