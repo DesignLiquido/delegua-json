@@ -1,7 +1,7 @@
 {
     "name": "@designliquido/delegua-json",
     "description": "Biblioteca para Delégua e JavaScript para manipulação de JSON.",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "main": "dist/index.js",
     "browser": "dist/web.js",
     "types": "dist/index.d.ts",
