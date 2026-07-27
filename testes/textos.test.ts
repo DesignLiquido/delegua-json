@@ -1,4 +1,4 @@
-import { textoParaJson, objetoParaTextoJson } from "..";
+import { textoParaJson, objetoParaTextoJson } from "../fontes";
 
 describe("Métodos que trabalham com texto", () => {
     it("Texto para JSON", () => {

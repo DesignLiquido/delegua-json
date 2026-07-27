@@ -1,5 +1,7 @@
-import * as sistemaArquivos from "fs";
-import * as caminho from "path";
+import { SistemaArquivosInterface } from './interfaces/sistema-arquivos-interface';
+import { SistemaArquivosNode } from './infraestruturas/sistema-arquivos-node';
+
+const sistemaArquivosPadrao: SistemaArquivosInterface = new SistemaArquivosNode();
 
 /**
  * Importa um arquivo como JSON.
@@ -8,10 +10,9 @@ import * as caminho from "path";
  * @param {string} caminhoArquivo O caminho absoluto do arquivo.
  * @returns O resultado da avaliação do arquivo em JSON.
  */
-export function importarArquivoJson(interpretador: {diretorioBase: string}, caminhoArquivo: string): any {
-    const caminhoResolvido = caminho.resolve(interpretador.diretorioBase, caminhoArquivo);
-    const dadosDoArquivo: Buffer = sistemaArquivos.readFileSync(caminhoResolvido);
-    return JSON.parse(dadosDoArquivo.toString());
+export async function importarArquivoJson(interpretador: {diretorioBase: string}, caminhoArquivo: string): Promise<any> {
+    const caminhoResolvido = sistemaArquivosPadrao.resolverCaminho(interpretador.diretorioBase, caminhoArquivo);
+    return JSON.parse(await sistemaArquivosPadrao.lerArquivoTexto(caminhoResolvido));
 }
 
 /**
@@ -20,9 +21,9 @@ export function importarArquivoJson(interpretador: {diretorioBase: string}, cami
  * @param {any} conteudoJson O dicionário em Delégua a ser transformado em JSON.
  * @param {string} caminhoArquivo O caminho absoluto do arquivo JSON.
  */
-export function exportarObjetoParaArquivoJson(_: any, conteudoJson: any, caminhoArquivo: string) {
+export async function exportarObjetoParaArquivoJson(_: any, conteudoJson: any, caminhoArquivo: string): Promise<void> {
     const conteudoTratado = JSON.stringify(conteudoJson);
-    sistemaArquivos.writeFileSync(caminhoArquivo, conteudoTratado);
+    await sistemaArquivosPadrao.escreverArquivoTexto(caminhoArquivo, conteudoTratado);
 }
 
 /**
@@ -36,7 +37,7 @@ export function textoParaJson(_: any, texto: string): any {
 }
 
 /**
- * Converte um objeto do JavaScript, normalmente um dicionário Delégua, para 
+ * Converte um objeto do JavaScript, normalmente um dicionário Delégua, para
  * texto representando JSON.
  * @param {any} _ O visitante da instrução, normalmente um interpretador.
  * @param {any} objeto Um objeto JavaScript.

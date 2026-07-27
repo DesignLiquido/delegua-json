@@ -1,8 +1,8 @@
-import { exportarObjetoParaArquivoJson, importarArquivoJson } from "..";
+import { exportarObjetoParaArquivoJson, importarArquivoJson } from "../fontes";
 
 describe("Métodos que trabalham com arquivos", () => {
-    it("Arquivo para JSON", () => {
-        const retorno = importarArquivoJson({diretorioBase: '.'}, "./testes/exemplo.json");
+    it("Arquivo para JSON", async () => {
+        const retorno = await importarArquivoJson({diretorioBase: '.'}, "./testes/exemplo.json");
         expect(retorno).toBeTruthy();
         expect(retorno.funcionarios).toBeTruthy();
         expect(retorno.funcionarios).toHaveLength(11);
@@ -10,8 +10,8 @@ describe("Métodos que trabalham com arquivos", () => {
         expect(retorno.areas).toHaveLength(3);
     });
 
-    it("JSON para arquivo", () => {
-        exportarObjetoParaArquivoJson({diretorioBase: '.'}, {
+    it("JSON para arquivo", async () => {
+        await exportarObjetoParaArquivoJson({diretorioBase: '.'}, {
             "funcionarios": [
                 {
                     "id": 0,
@@ -107,7 +107,7 @@ describe("Métodos que trabalham com arquivos", () => {
             ]
         }, "./testes/exemplo2.json");
 
-        const jsonExportado = importarArquivoJson({diretorioBase: '.'}, "./testes/exemplo2.json");
+        const jsonExportado = await importarArquivoJson({diretorioBase: '.'}, "./testes/exemplo2.json");
         expect(jsonExportado).toBeTruthy();
         expect(jsonExportado.funcionarios).toBeTruthy();
         expect(jsonExportado.funcionarios).toHaveLength(11);
